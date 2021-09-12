@@ -1,0 +1,199 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: Squirrel
+comment: 'Squirrel Improved Syntax: version 1.0'
+file_extensions:
+  - nut
+scope: source.nut
+contexts:
+  main:
+    - match: '\b(class)\s+([a-zA-Z_](?:\w|\.)*)(?:\s+(extends)\s+([a-zA-Z_](?:\w|\.)*))?'
+      scope: meta.class.squirrel
+      captures:
+        1: storage.type.class.squirrel
+        2: entity.name.type.class.squirrel
+        3: storage.modifier.extends.squirrel
+        4: entity.other.inherited-class.squirrel
+    - match: ^\s*(constructor)\s*\((.*)\)
+      scope: other.constructor
+      captures:
+        1: entity.name.function
+        2: variable.parameter
+    - include: control
+    - include: no-control
+
+  no-control:
+    - include: comments
+    - include: strings
+    - include: function-defs
+    - include: function-calls
+    - include: basics
+    - include: constants
+    - include: parameter-vars
+    - include: default-braces
+    - include: punctuation
+    - include: storage
+
+  default-braces:
+    - match: '\{'
+      scope: punctuation.section.braces.begin
+      push:
+        - meta_scope: meta.braces
+        - match: '\}'
+          scope: punctuation.section.braces.end
+          pop: true
+        - include: main
+    - match: '\['
+      scope: punctuation.section.brackets.begin
+      push:
+        - meta_scope: meta.brackets
+        - match: '\]'
+          scope: punctuation.section.brackets.end
+          pop: true
+        - include: no-control
+    - match: '\}'
+      scope: invalid.illegal.squirrel
+    - match: '\]'
+      scope: invalid.illegal.squirrel
+
+  comments:
+    - match: \/\*
+      scope: punctuation.definition.comment.squirrel
+      push:
+        - meta_scope: comment.block.squirrel
+        - match: \*\/
+          scope: punctuation.definition.comment.squirrel
+          pop: true
+    - match: (//|#).*$\n?
+      scope: comment.line.squirrel
+      captures:
+        1: punctuation.definition.comment.squirrel
+
+  function-defs:
+    - match: '\s*(function)\s*(?=[a-zA-Z_])'
+      scope: keyword.control.squirrel
+      push:
+      - match: '[a-zA-Z_][a-zA-Z0-9_]*'
+        scope: entity.name.function.squirrel
+      - match: '::'
+        scope: punctuation.accessor.squirrel
+      - match: '(?=\()'
+        set: start-parameters
+    - match: '((?:::)?[a-zA-Z_][a-zA-Z0-9_]*)\s*(<-|=)\s*(function)\s*(?=\()'
+      captures:
+        1: entity.name.function.squirrel
+        2: keyword.operator.squirrel
+        3: keyword.control.squirrel
+      push: start-parameters
+    - match: '\s*(function)\s*(?=\()'
+      scope: entity.name.function.squirrel
+      push: start-parameters
+
+  function-calls:
+    - meta_scope: meta.function.call
+    - match: '(len|tofloat|tointeger|tochar|slice|find|tolower|toupper|rawget|rawset|rawin|rawdelete|clear|append|push|extend|pop|top|insert|remove|resize|sort|reverse|map|apply|find|capture|match|search)\s*(?=\()'
+      scope: support.function.squirrel
+      push: start-parameters
+    - match: '(?:::)?[a-zA-Z_][a-zA-Z0-9_]*\s*(?=\()'
+      scope: variable.function.squirrel
+      push: start-parameters
+
+  function-calls-member:
+    - meta_scope: meta.function.call
+    - match: '(len|tofloat|tointeger|tochar|slice|find|tolower|toupper|rawget|rawset|rawin|rawdelete|clear|append|push|extend|pop|top|insert|remove|resize|sort|reverse|map|apply|find|capture|match|search)\s*(?=\()'
+      scope: support.function.squirrel
+      set: start-parameters
+    - match: '[a-zA-Z_][a-zA-Z0-9_]*\s*(?=\()'
+      scope: variable.function.squirrel
+      set: start-parameters
+
+  control:
+    - match: \b(if|while|do|switch|for|foreach|return|throw|yield|continue|try|catch|resume|default|else|case|break)\b
+      scope: keyword.control.squirrel
+
+  storage:
+    - match: \b(local|class|function|constructor|enum)\b
+      scope: storage.type.squirrel
+    - match: \b(extends|static|const)\b
+      scope: storage.modifier.squirrel
+
+  punctuation:
+    - match: \.(?:\s*)
+      scope: punctuation.accessor.squirrel
+      push: maybe-member
+    - match: \;
+      scope: punctuation.terminator.statement.squirrel
+
+  start-parameters:
+    - match: \(
+      scope: punctuation.section.parens.begin
+      set: parameters
+
+  parameters:
+    - meta_scope: meta.function.parameters
+    - include: no-control
+    - match: \)
+      scope: punctuation.section.parens.end
+      pop: true
+
+  parameter-vars:
+    - match: '\b_([a-zA-Z0-9_]+)\b'
+      scope: variable.parameter
+
+  basics:
+    - match: \btrue\b
+      scope: constant.language.boolean.true.squirrel
+    - match: \bfalse\b
+      scope: constant.language.boolean.false.squirrel
+    - match: \bnull\b
+      scope: constant.language.null.squirrel
+    - match: '\b((0(x|X)[0-9a-fA-F]+)|([0-9]+(\.[0-9]+)?))\b'
+      scope: constant.numeric.squirrel
+    - match: \b(delete|in|clone|instanceof|typeof)\b
+      scope: keyword.operator.squirrel
+    - match: '!|%|&|\*|<\>\-\-|\-|\+\+|\+|==|=|!=|<=|>=|<=>|<-|>>>|<<|>>|!|&&|\|\||\?\:|\*=|\/=|%=|\+=|\-=|&=|%=|>|<|\?|\/(?=[^/])|:|\|'
+      scope: keyword.operator.squirrel
+
+  constants:
+    - match: \b(base|this|vargv|vargc|parent|PI|RAND_MAX)\b
+      scope: variable.language.squirrel
+
+  strings:
+    - match: "'"
+      captures:
+        0: punctuation.definition.string.begin.squirrel
+      push:
+        - meta_scope: string.quoted.single.squirrel
+        - match: "'"
+          captures:
+            0: punctuation.definition.string.end.squirrel
+          pop: true
+    - match: '"'
+      captures:
+        0: punctuation.definition.string.begin.squirrel
+      push:
+        - meta_scope: string.quoted.double.squirrel
+        - match: '"'
+          captures:
+            0: punctuation.definition.string.end.squirrel
+          pop: true
+        - include: string_escaped_char
+
+  maybe-member:
+    - include: function-calls-member
+    - include: function-defs
+    - match: '[a-zA-Z_][a-zA-Z0-9_]*\b'
+      scope: variable.other.member.squirrel
+      pop: true
+    - match: $|;
+      pop: true
+    - match: \S*
+      scope: invalid.illegal.squirrel
+      pop: true
+      
+  string_escaped_char:
+    - match: '\\(\\|[abefnprtv''"?]|[0-3]\d{,2}|[4-7]\d?|x[a-fA-F0-9]{,2})'
+      scope: constant.character.escape.c
+    - match: \\.
+      scope: invalid.illegal.unknown-escape.c
