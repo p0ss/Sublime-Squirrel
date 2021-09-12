@@ -1,13 +1,14 @@
 <snippet>
     <content><![CDATA[
-if ($1) {
-    ${2:// Code}
-} else if ($3) {
-    ${4:// Code}
+if ($1)
+{
+    $2
+}
+else if ($3)
+{
+    $4
 }]]></content>
-    <!-- Optional: Set a tabTrigger to define how to trigger the snippet -->
     <tabTrigger>ifelseif</tabTrigger>
-    <!-- Optional: Set a scope to limit where the snippet will trigger -->
     <scope>source.nut</scope>
     <description>Snippet - if ; else if</description>
 </snippet>

@@ -1,21 +1,9 @@
 # Sublime-Squirrel
 Original author is [micheg](https://github.com/micheg), [repository found here](https://github.com/micheg/sublime_squirrel).
-
-This is Squirrel Programming Language support for Sublime Text 2 & 3.
-I tried my best to expand the original repo a bit more and add a little structure to it.
-
-## Changes
-* Add highlight for most Squirrel functions (regexp(), lstrip(), format(), time(), .tointeger(), .tostring(), .len() and many, many more)
-* Add highlight for specifiers (%s, %i etc.)
-* Create folder structure
-* Add couple snippets
-* Add couple completions
+This Repository forks off of [IAmRoland's](https://github.com/iAmRoland), [repository](https://github.com/iAmRoland/Sublime-Squirrel).
 
 ## Note
-Editing and messing around with these files is not in my area of expertise. I really wanted better support for the Squirrel highlighting in Sublime so I took a stab at it. 
-It's not perfect and many sections can probably be improved upon but it works, so I'm happy with it for now. 
-
-Feel free to improve where needed and share!
+This version has been significantly improved: with a large amount of additional syntax highlighting, the ability to recognize members, function definitions and many more.
 
 ## Installation
 There are 3 ways to install it.
@@ -38,23 +26,17 @@ Open up your Sublime Text packages directory and clone the repository using the 
 
 *on Windows (using Git Bash):*
 
-    cd ~/AppData/Roaming/Sublime\ Text\ 2/Packages
-    or
-    cd ~/AppData/Roaming/Sublime\ Text\ 3/Packages
+    cd ~/AppData/Roaming/Sublime Text/Packages
     git clone https://github.com/iAmRoland/Sublime-Squirrel.git Squirrel
 
 *on OS X (are the paths correct?):*
-    
-    cd ~/Library/Application\ Support/Sublime\ Text\ 2/Packages
-    or
-    cd ~/Library/Application\ Support/Sublime\ Text\ 3/Packages
+
+    cd ~/Library/Application/Support/Sublime Text/Packages
     git clone https://github.com/iAmRoland/Sublime-Squirrel.git Squirrel
 
 *on Ubuntu (other linux distors? are the paths correct?):*
 
-    cd ~/.config/sublime-text-2/Packages
-    or
-    cd ~/.config/sublime-text-3/Packages
+    cd ~/.config/sublime-text/Packages
     git clone https://github.com/iAmRoland/Sublime-Squirrel.git Squirrel
 
 ### File Download
