@@ -1,7 +1,7 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 local ${1:variable}]]></content>
-    <tabTrigger>local</tabTrigger>
-    <scope>source.nut</scope>
-    <description>Snippet - local</description>
+	<tabTrigger>local</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - local</description>
 </snippet>

@@ -1,10 +1,10 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 else
 {
-    $1
+	$1
 }]]></content>
-    <tabTrigger>else</tabTrigger>
-    <scope>source.nut</scope>
-    <description>Snippet - else</description>
+	<tabTrigger>else</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - else</description>
 </snippet>

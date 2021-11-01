@@ -1,14 +1,14 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 if ($1)
 {
-    $2
+	$2
 }
 else if ($3)
 {
-    $4
+	$4
 }]]></content>
-    <tabTrigger>ifelseif</tabTrigger>
-    <scope>source.nut</scope>
-    <description>Snippet - if ; else if</description>
+	<tabTrigger>ifelseif</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - if ; else if</description>
 </snippet>

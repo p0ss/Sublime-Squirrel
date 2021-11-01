@@ -1,11 +1,11 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 foreach ($1 in $2)
 {
-    $3
+	$3
 }
 ]]></content>
-    <tabTrigger>foreach</tabTrigger>
-    <scope>source.nut</scope>
-    <description>Snippet - foreach</description>
+	<tabTrigger>foreach</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - foreach</description>
 </snippet>

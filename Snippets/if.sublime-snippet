@@ -1,10 +1,10 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 if ($1)
 {
-    $2
+	$2
 }]]></content>
-    <tabTrigger>if</tabTrigger>
-    <scope>source.nut</scope>
-    <description>Snippet - if</description>
+	<tabTrigger>if</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - if</description>
 </snippet>

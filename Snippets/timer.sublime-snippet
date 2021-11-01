@@ -1,9 +1,9 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 timer(${1:function () \{
-    $2
+	$2
 \}}, ${3:1000}, ${4:1}, ${5:params});]]></content>
-    <tabTrigger>timer</tabTrigger>
-    <scope>source.nut</scope>
-    <description>Snippet - timer</description>
+	<tabTrigger>timer</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - timer</description>
 </snippet>

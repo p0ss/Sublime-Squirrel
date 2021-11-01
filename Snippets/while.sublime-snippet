@@ -1,10 +1,10 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 while ($1)
 {
-    $2
+	$2
 }]]></content>
-    <tabTrigger>while</tabTrigger>
-    <scope>source.nut</scope>
-    <description>Snippet - while</description>
+	<tabTrigger>while</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - while</description>
 </snippet>

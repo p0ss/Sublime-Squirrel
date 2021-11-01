@@ -52,9 +52,7 @@ contexts:
           scope: punctuation.section.brackets.end
           pop: true
         - include: no-control
-    - match: '\}'
-      scope: invalid.illegal.squirrel
-    - match: '\]'
+    - match: '\}|\]'
       scope: invalid.illegal.squirrel
 
   comments:
@@ -71,8 +69,8 @@ contexts:
         1: punctuation.definition.comment.squirrel
 
   function-defs:
-    - match: '\s*(function)\s*(?=[a-zA-Z_])'
-      scope: keyword.control.squirrel
+    - match: '\b(function)(?=\s*[a-zA-Z0-9_]+\s*\()'
+      scope: storage.type.function keyword.declaration.function
       push:
       - match: '[a-zA-Z_][a-zA-Z0-9_]*'
         scope: entity.name.function.squirrel
@@ -80,14 +78,11 @@ contexts:
         scope: punctuation.accessor.squirrel
       - match: '(?=\()'
         set: start-parameters
-    - match: '((?:::)?[a-zA-Z_][a-zA-Z0-9_]*)\s*(<-|=)\s*(function)\s*(?=\()'
+    - match: '((?:::)?[a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(function)\s*(?=\()'
       captures:
         1: entity.name.function.squirrel
         2: keyword.operator.squirrel
-        3: keyword.control.squirrel
-      push: start-parameters
-    - match: '\s*(function)\s*(?=\()'
-      scope: entity.name.function.squirrel
+        3: storage.type.function keyword.declaration.function
       push: start-parameters
 
   function-calls:
@@ -113,8 +108,14 @@ contexts:
       scope: keyword.control.squirrel
 
   storage:
-    - match: \b(local|class|function|constructor|enum)\b
+    - match: \blocal\b
       scope: storage.type.squirrel
+    - match: \bclass\b
+      scope: storage.type.class keyword.declaration.class
+    - match: \bconstructor\b
+      scope: storage.type.constructor keyword.declaration.constructor
+    - match: \benum\b
+      scope: storage.type.enum keyword.declaration.enum
     - match: \b(extends|static|const)\b
       scope: storage.modifier.squirrel
 

@@ -1,15 +1,15 @@
 <snippet>
-    <content><![CDATA[
+	<content><![CDATA[
 switch (${1:expression})
 {
-    case ${2:expression2}:
-        $3
-        break;
+	case ${2:expression2}:
+		$3
+		break;
 
-    default:
-        $4
+	default:
+		$4
 }]]></content>
-    <tabTrigger>switch</tabTrigger>
-    <scope>source.nut</scope>
-    <description>Snippet - switch</description>
+	<tabTrigger>switch</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - switch</description>
 </snippet>
