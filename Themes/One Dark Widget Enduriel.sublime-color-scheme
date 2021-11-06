@@ -1,0 +1,155 @@
+{
+    "name": "One Dark - Input",
+    "author": "Andres Michel - Modified by Enduriel",
+    "variables":
+    {
+        "black": "hsl(225, 13%, 12%)",
+        "blue": "hsl(220, 100%, 66%)",
+        "blue2": "hsl(207, 82%, 66%)",
+        "blue3": "hsl(220, 42%, 38%)",
+        "blue4": "hsl(220, 34%, 25%)",
+        "blue5": "hsl(219, 14%, 71%)",
+        "blue6": "hsl(240, 100%, 50%)",
+        "cyan": "hsl(187, 47%, 55%)",
+        "green": "hsl(95, 38%, 62%)",
+        "grey": "hsl(219, 10%, 40%)",
+        "orange": "hsl(39, 67%, 69%)",
+        "orange2": "hsl(29, 54%, 61%)",
+        "purple": "hsl(286, 60%, 67%)",
+        "red": "hsl(0, 70%, 60%)",
+        "red2": "hsl(355, 65%, 65%)",
+        "white": "hsl(0, 0%, 100%)",
+        "white2": "hsl(220, 13%, 86%)"
+    },
+    "globals":
+    {
+        "foreground": "var(white2)",
+        "background": "var(black)",
+        "caret": "var(blue)",
+        "selection": "var(blue3)",
+        "selection_border": "var(blue3)",
+        "inactive_selection": "var(blue4)",
+        "shadow": "var(black)",
+        "shadow_width": "1"
+    },
+    "rules":
+    [
+        {
+            "name": "Entity",
+            "scope": "entity",
+            "foreground": "var(orange2)"
+        },
+        {
+            "name": "Entity name",
+            "scope": "entity.name",
+            "foreground": "var(orange)"
+        },
+        {
+            "name": "Entity other inherited-class",
+            "scope": "entity.other.inherited-class",
+            "foreground": "var(green)"
+        },
+        {
+            "name": "Entity name section",
+            "scope": "entity.name.section",
+            "foreground": "var(red2)"
+        },
+        {
+            "name": "Entity name tag",
+            "scope": "entity.name.tag",
+            "foreground": "var(red2)"
+        },
+        {
+            "name": "Entity other attrbute-name",
+            "scope": "entity.other.attrbute-name",
+            "foreground": "var(blue6)"
+        },
+        {
+            "name": "Variable",
+            "scope": "variable",
+            "foreground": "var(red2)"
+        },
+        {
+            "name": "Variable language",
+            "scope": "variable.language",
+            "foreground": "var(red2)"
+        },
+        {
+            "name": "Variable parameter",
+            "scope": "variable.parameter",
+            "foreground": "var(blue5)"
+        },
+        {
+            "name": "Variable function",
+            "scope": "variable.function",
+            "foreground": "var(blue2)"
+        },
+        {
+            "name": "Constant",
+            "scope": "constant",
+            "foreground": "var(orange2)"
+        },
+        {
+            "name": "Constant numeric",
+            "scope": "constant.numeric",
+            "foreground": "var(orange2)"
+        },
+        {
+            "name": "Constant language",
+            "scope": "constant.language",
+            "foreground": "var(orange2)"
+        },
+        {
+            "name": "Constant character escape",
+            "scope": "constant.character.escape",
+            "foreground": "var(cyan)"
+        },
+        {
+            "name": "Storage type",
+            "scope": "storage.type",
+            "foreground": "var(purple)"
+        },
+        {
+            "name": "Storage modifier",
+            "scope": "storage.modifier",
+            "foreground": "var(purple)"
+        },
+        {
+            "name": "Support",
+            "scope": "support",
+            "foreground": "var(orange)"
+        },
+        {
+            "name": "Keyword",
+            "scope": "keyword",
+            "foreground": "var(orange2)"
+        },
+        {
+            "name": "Keyword control",
+            "scope": "keyword.control",
+            "foreground": "var(purple)"
+        },
+        {
+            "name": "Keyword operator",
+            "scope": "keyword.operator",
+            "foreground": "var(cyan)"
+        },
+        {
+            "name": "String",
+            "scope": "string",
+            "foreground": "var(green)"
+        },
+        {
+            "name": "Comment",
+            "scope": "comment",
+            "foreground": "var(grey)",
+            "font_style": "italic"
+        },
+        {
+            "name": "Invalid",
+            "scope": "invalid",
+            "foreground": "var(white)",
+            "background": "var(red)"
+        }
+    ]
+}
