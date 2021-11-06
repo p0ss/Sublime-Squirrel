@@ -8,7 +8,7 @@ This version has been significantly improved:
 
 * a large amount of additional syntax highlighting, the ability to recognize members, function definitions and many more.
 * fixes the bad autoindent behavior with brackets in Squirrel
-* 2 updated and modified themes to fully take advantage of the variety of defined scopes.
+* 2 updated and modified themes (based off of: [One Dark](https://github.com/andresmichel/one-dark-theme) and [Material Monokai Dark](https://github.com/equinusocio/material-theme)) to fully take advantage of the variety of defined scopes.
 
 ## Installation
 
