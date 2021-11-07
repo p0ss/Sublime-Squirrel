@@ -2,7 +2,7 @@
 	<content><![CDATA[
 <- function(${1/(^.+$)|^$/(?1: :)/}$1${1/(^.+$)|^$/(?1: :)/})
 {
-	$0
+	$2
 }
 ]]></content>
 	<tabTrigger>newf</tabTrigger>

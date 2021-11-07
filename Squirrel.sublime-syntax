@@ -8,22 +8,16 @@ file_extensions:
 scope: source.nut
 contexts:
   main:
-    - match: '\b(class)\s+([a-zA-Z_](?:\w|\.)*)(?:\s+(extends)\s+([a-zA-Z_](?:\w|\.)*))?'
-      scope: meta.class.squirrel
-      captures:
-        1: storage.type.class.squirrel
-        2: entity.name.type.class.squirrel
-        3: storage.modifier.extends.squirrel
-        4: entity.other.inherited-class.squirrel
-    - match: ^\s*(constructor)\s*\((.*)\)
+    - match: \s*(constructor)\s(?=\()
       scope: other.constructor
       captures:
         1: entity.name.function
-        2: variable.parameter
+      push: start-parameters
     - include: control
     - include: no-control
 
   no-control:
+    - include: class-defs
     - include: comments
     - include: strings
     - include: function-defs
@@ -68,10 +62,38 @@ contexts:
       captures:
         1: punctuation.definition.comment.squirrel
 
+  class-defs:
+    - match: \bclass\b
+      scope: storage.type.class.squirrel
+      push:
+        - match: '$|(?={)'
+          pop: true
+        - include: class-extends
+        - match: '[a-zA-Z_]+'
+          scope: entity.name.type.class.squirrel
+          push: class-extends
+
+  class-extends:
+    - match: \bextends\b
+      scope: storage.modifier.extends.squirrel
+      push:
+        - include: constants
+        - match: '([a-zA-Z_]+)\s*(?=::|\.)'
+          scope: variable.other.member.squirrel
+        - include: function-calls
+        - match: ::|\.
+          scope: punctuation.accessor.squirrel
+        - match: '[a-zA-Z_\.]+(?=\s*$|{)'
+          scope: entity.other.inherited-class.squirrel
+          pop: true
+      pop: true
+
   function-defs:
     - match: '\b(function)(?=\s*[a-zA-Z0-9_]+\s*\()'
       scope: storage.type.function keyword.declaration.function
       push:
+      - match: _(?:cmp|mul|add|sub|div|mod|unm|newslot|delslot|set|get|typeof|tostring|nexti|cloned|inherited|newmember|call)
+        scope: support.function.squirrel
       - match: '[a-zA-Z_][a-zA-Z0-9_]*'
         scope: entity.name.function.squirrel
       - match: '::'
@@ -120,6 +142,8 @@ contexts:
       scope: storage.modifier.squirrel
 
   punctuation:
+    - match: \.\.\.
+      scope: variable.parameter
     - match: \.(?:\s*)
       scope: punctuation.accessor.squirrel
       push: maybe-member

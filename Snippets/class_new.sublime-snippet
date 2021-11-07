@@ -1,0 +1,11 @@
+<snippet>
+	<content><![CDATA[
+<- class${1/(^.+$)|^$/(?1: extends :)/}${1:Parent}
+{
+	$2
+}
+]]></content>
+	<tabTrigger>newc</tabTrigger>
+	<scope>source.nut</scope>
+	<description>Snippet - New Class</description>
+</snippet>
