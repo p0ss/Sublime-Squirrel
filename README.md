@@ -12,8 +12,5 @@ This version has been significantly improved:
 
 ## Installation
 
-Download the source code as a ZIP. Then, change the extension of the zip file to .sublime-package (instead of Sublime-Squirrel-main.zip it should now be Sublime-Squirrel-main.sublime-package).
-
-Open up your Sublime Text packages directory (%appdata%/Sublime Text/Installed Packages). 
-
-Copy the file with the new extension to that directory.
+Download the source code as a ZIP, then extract the zip and rename the folder to Squirrel\
+Then copy that Squirrel folder to %appdata%/Sublime Text/Packages
