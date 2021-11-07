@@ -8,11 +8,6 @@ file_extensions:
 scope: source.nut
 contexts:
   main:
-    - match: \s*(constructor)\s(?=\()
-      scope: other.constructor
-      captures:
-        1: entity.name.function
-      push: start-parameters
     - include: control
     - include: no-control
 
@@ -68,27 +63,25 @@ contexts:
       push:
         - match: '$|(?={)'
           pop: true
-        - include: class-extends
+        - match: \bextends\b
+          scope: storage.modifier.extends.squirrel
+          push:
+            - include: constants
+            - match: '([a-zA-Z_]+)\s*(?=::|\.)'
+              scope: variable.other.member.squirrel
+            - include: function-calls-member
+            - match: ::|\.
+              scope: punctuation.accessor.squirrel
+            - match: '[a-zA-Z_\.]+(?=\s*$|{)'
+              scope: entity.other.inherited-class.squirrel
+              pop: true
         - match: '[a-zA-Z_]+'
           scope: entity.name.type.class.squirrel
-          push: class-extends
-
-  class-extends:
-    - match: \bextends\b
-      scope: storage.modifier.extends.squirrel
-      push:
-        - include: constants
-        - match: '([a-zA-Z_]+)\s*(?=::|\.)'
-          scope: variable.other.member.squirrel
-        - include: function-calls
-        - match: ::|\.
-          scope: punctuation.accessor.squirrel
-        - match: '[a-zA-Z_\.]+(?=\s*$|{)'
-          scope: entity.other.inherited-class.squirrel
-          pop: true
-      pop: true
 
   function-defs:
+    - match: \bconstructor\s*(?=\()
+      scope: entity.name.function.constructor
+      push: start-parameters
     - match: '\b(function)(?=\s*[a-zA-Z0-9_]+\s*\()'
       scope: storage.type.function keyword.declaration.function
       push:
@@ -134,8 +127,6 @@ contexts:
       scope: storage.type.squirrel
     - match: \bclass\b
       scope: storage.type.class keyword.declaration.class
-    - match: \bconstructor\b
-      scope: storage.type.constructor keyword.declaration.constructor
     - match: \benum\b
       scope: storage.type.enum keyword.declaration.enum
     - match: \b(extends|static|const)\b
