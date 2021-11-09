@@ -93,11 +93,12 @@ contexts:
         scope: punctuation.accessor.squirrel
       - match: '(?=\()'
         set: start-parameters
-    - match: '((?:::)?[a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(function)\s*(?=\()'
+    - match: '(::|\.)?([a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(function)\s*(?=\()'
       captures:
-        1: entity.name.function.squirrel
-        2: keyword.operator.squirrel
-        3: storage.type.function keyword.declaration.function
+        1: punctuation.accessor.squirrel
+        2: entity.name.function.squirrel
+        3: keyword.operator.squirrel
+        4: storage.type.function keyword.declaration.function
       push: start-parameters
 
   function-calls:
