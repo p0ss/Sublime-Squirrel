@@ -2,7 +2,7 @@
 ---
 # http://www.sublimetext.com/docs/syntax.html
 name: Squirrel
-comment: 'Squirrel Improved Syntax: version 1.0'
+comment: 'Squirrel Improved Syntax: version 2.1.0'
 file_extensions:
   - nut
 scope: source.nut
@@ -15,6 +15,7 @@ contexts:
     - include: class-defs
     - include: comments
     - include: strings
+    - include: enum-defs
     - include: function-defs
     - include: function-calls
     - include: basics
@@ -57,26 +58,55 @@ contexts:
       captures:
         1: punctuation.definition.comment.squirrel
 
+  enum-defs:
+    - match: \benum\b
+      scope: storage.type.enum
+      push:
+        - match: '$|(?={)'
+          pop: true
+        - match: '[a-zA-Z_1-9]+'
+          scope: entity.name.enum.squirrel
+    - match: (::|\.)?([a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(enum)
+      captures:
+        1: punctuation.accessor.squirrel
+        2: entity.name.enum.squirrel
+        3: keyword.operator.squirrel
+        4: storage.type.enum.squirrel
+
   class-defs:
     - match: \bclass\b
       scope: storage.type.class.squirrel
       push:
-        - match: '$|(?={)'
-          pop: true
-        - match: \bextends\b
-          scope: storage.modifier.extends.squirrel
-          push:
-            - include: constants
-            - match: '([a-zA-Z_]+)\s*(?=::|\.)'
-              scope: variable.other.member.squirrel
-            - include: function-calls-member
-            - match: ::|\.
-              scope: punctuation.accessor.squirrel
-            - match: '[a-zA-Z_\.1-9]+(?=\s*$|{)'
-              scope: entity.other.inherited-class.squirrel
-              pop: true
+        - include: class-ends-or-extends
         - match: '[a-zA-Z_1-9]+'
-          scope: entity.name.type.class.squirrel
+          scope: entity.name.class.squirrel
+    - match: '(::|\.)?([a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(class)'
+      captures:
+        1: punctuation.accessor.squirrel
+        2: entity.name.class.squirrel
+        3: keyword.operator.squirrel
+        4: storage.type.class.squirrel
+      push:
+        - include: class-ends-or-extends
+
+  class-ends-or-extends:
+    - match: '$|(?={)'
+      pop: true
+    - match: \bextends\b
+      scope: storage.modifier.extends.squirrel
+      push:
+        - include: class-extends
+
+  class-extends:
+    - include: constants
+    - match: '([a-zA-Z_]+)\s*(?=::|\.)'
+      scope: variable.other.member.squirrel
+    - include: function-calls-member
+    - match: ::|\.
+      scope: punctuation.accessor.squirrel
+    - match: '[a-zA-Z_\.1-9]+(?=\s*$|{)'
+      scope: entity.other.inherited-class.squirrel
+      pop: true
 
   function-defs:
     - match: \bconstructor\s*(?=\()
@@ -126,10 +156,6 @@ contexts:
   storage:
     - match: \blocal\b
       scope: storage.type.squirrel
-    - match: \bclass\b
-      scope: storage.type.class keyword.declaration.class
-    - match: \benum\b
-      scope: storage.type.enum keyword.declaration.enum
     - match: \b(extends|static|const)\b
       scope: storage.modifier.squirrel
 
