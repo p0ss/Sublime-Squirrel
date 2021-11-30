@@ -123,7 +123,7 @@ contexts:
         scope: punctuation.accessor.squirrel
       - match: '(?=\()'
         set: start-parameters
-    - match: '(::|\.)?([a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(function)\s*(?=\()'
+    - match: '(::|\.)?([a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(function|@)\s*(?=\()'
       captures:
         1: punctuation.accessor.squirrel
         2: entity.name.function.squirrel
