@@ -1,3 +1,4 @@
+<!-- Copyright 2021 Enduriel -->
 <snippet>
 	<content><![CDATA[
 foreach ($1 in $2)

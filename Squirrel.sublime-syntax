@@ -1,6 +1,6 @@
 %YAML 1.2
 ---
-# http://www.sublimetext.com/docs/syntax.html
+# Copyright 2021 Enduriel
 name: Squirrel
 comment: 'Squirrel Improved Syntax: version 2.1.0'
 file_extensions:

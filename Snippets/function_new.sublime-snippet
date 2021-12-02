@@ -1,3 +1,4 @@
+<!-- Copyright 2021 Enduriel -->
 <snippet>
 	<content><![CDATA[
 <- function(${1/(^.+$)|^$/(?1: :)/}$1${1/(^.+$)|^$/(?1: :)/})

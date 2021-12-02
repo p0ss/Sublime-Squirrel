@@ -1,3 +1,4 @@
+<!-- Copyright 2021 Enduriel -->
 <snippet>
 	<content><![CDATA[
 class ${1:ClassName} ${2:extends ${3:Actor}}

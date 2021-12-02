@@ -1,3 +1,4 @@
+// Copyright 2021 Enduriel
 [
 	{"command": "insert", "args": {"characters": "\n\n"} },
 	{"command": "left_delete"},

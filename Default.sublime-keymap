@@ -1,3 +1,4 @@
+// Copyright 2021 Enduriel
 [
 	{ "keys": ["enter"], "command": "run_macro_file", "args": {"file": "res://Packages/Squirrel/Macros/Add Line in Brackets.sublime-macro"}, "context":
 		[

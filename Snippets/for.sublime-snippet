@@ -1,3 +1,4 @@
+<!-- Copyright 2021 Enduriel -->
 <snippet>
 	<content><![CDATA[
 for (${1:local i = 0}; i < ${2:var.len()}; ${3:++i})
