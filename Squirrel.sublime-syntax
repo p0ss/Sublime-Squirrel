@@ -65,9 +65,9 @@ contexts:
       push:
         - match: '$|(?={)'
           pop: true
-        - match: '[a-zA-Z_1-9]+'
+        - match: '\w+'
           scope: entity.name.enum.squirrel
-    - match: (::|\.)?([a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(enum)
+    - match: (::|\.)?([^\d\W]\w*)\s+(<-|=)\s+(enum)
       captures:
         1: punctuation.accessor.squirrel
         2: entity.name.enum.squirrel
@@ -79,9 +79,9 @@ contexts:
       scope: storage.type.class.squirrel
       push:
         - include: class-ends-or-extends
-        - match: '[a-zA-Z_1-9]+'
+        - match: '\w+'
           scope: entity.name.class.squirrel
-    - match: '(::|\.)?([a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(class)'
+    - match: '(::|\.)?([^\d\W]\w*)\s+(<-|=)\s+(class)'
       captures:
         1: punctuation.accessor.squirrel
         2: entity.name.class.squirrel
@@ -100,12 +100,12 @@ contexts:
 
   class-extends:
     - include: constants
-    - match: '([a-zA-Z_]+)\s*(?=::|\.)'
+    - match: '([^\d\W]+)\s*(?=::|\.)'
       scope: variable.other.member.squirrel
     - include: function-calls-member
     - match: ::|\.
       scope: punctuation.accessor.squirrel
-    - match: '[a-zA-Z_\.1-9]+(?=\s*$|{)'
+    - match: '\w+(?=\s*$|{)'
       scope: entity.other.inherited-class.squirrel
       pop: true
 
@@ -113,18 +113,18 @@ contexts:
     - match: \bconstructor\s*(?=\()
       scope: entity.name.function.constructor
       push: start-parameters
-    - match: '\b(function)(?=\s*[a-zA-Z0-9_]+\s*\()'
+    - match: '\b(function)(?=\s*\w+\s*\()'
       scope: storage.type.function keyword.declaration.function
       push:
       - match: _(?:cmp|mul|add|sub|div|mod|unm|newslot|delslot|set|get|typeof|tostring|nexti|cloned|inherited|newmember|call)
         scope: support.function.squirrel
-      - match: '[a-zA-Z_][a-zA-Z0-9_]*'
+      - match: '[^\d\W]\w*'
         scope: entity.name.function.squirrel
       - match: '::'
         scope: punctuation.accessor.squirrel
       - match: '(?=\()'
         set: start-parameters
-    - match: '(::|\.)?([a-zA-Z_][a-zA-Z0-9_]*)\s+(<-|=)\s+(function|@)\s*(?=\()'
+    - match: '(::|\.)?([^\d\W]\w*)\s+(<-|=)\s+(function|@)\s*(?=\()'
       captures:
         1: punctuation.accessor.squirrel
         2: entity.name.function.squirrel
@@ -137,7 +137,7 @@ contexts:
     - match: '(array|split|blob|regexp|format|lstrip|rstrip|assert|cast2fi|casti2f|date|getroottable|swap2|swap4|swapfloat|time)\s*(?=\()'
       scope: support.function.squirrel
       push: start-parameters
-    - match: '(?:::)?[a-zA-Z_][a-zA-Z0-9_]*\s*(?=\()'
+    - match: '(?:::)?[^\d\W]\w*\s*(?=\()'
       scope: variable.function.squirrel
       push: start-parameters
 
@@ -146,7 +146,7 @@ contexts:
     - match: '(len|tostring|tofloat|tointeger|tochar|slice|find|tolower|toupper|rawget|rawset|rawin|rawdelete|clear|append|push|extend|pop|top|insert|remove|resize|sort|reverse|map|apply|capture|match|search)\s*(?=\()'
       scope: support.function.squirrel
       set: start-parameters
-    - match: '[a-zA-Z_][a-zA-Z0-9_]*\s*(?=\()'
+    - match: '[^\d\W]\w*\s*(?=\()'
       scope: variable.function.squirrel
       set: start-parameters
 
@@ -182,7 +182,7 @@ contexts:
       pop: true
 
   parameter-vars:
-    - match: '\b_([a-zA-Z0-9_]+)\b'
+    - match: '\b_(\w+)\b'
       scope: variable.parameter
 
   basics:
@@ -196,8 +196,6 @@ contexts:
       scope: constant.numeric.squirrel
     - match: \b(delete|in|clone|instanceof|typeof)\b
       scope: keyword.operator.squirrel
-    - match: '::[a-zA-Z_1-9]+'
-      scope: variable.other
     - match: '!|%|&|\*|<\>\-\-|\-|\+\+|\+|==|=|!=|<=|>=|<=>|<-|>>>|<<|>>|!|&&|\|\||\?\:|\*=|\/=|%=|\+=|\-=|&=|%=|>|<|\?|\/(?=[^/])|:|\|'
       scope: keyword.operator.squirrel
 
@@ -232,7 +230,7 @@ contexts:
   maybe-member:
     - include: function-calls-member
     - include: function-defs
-    - match: '[a-zA-Z_][a-zA-Z0-9_]*\b'
+    - match: '[^\d\W]\w*\b'
       scope: variable.other.member.squirrel
       pop: true
     - match: $|;
