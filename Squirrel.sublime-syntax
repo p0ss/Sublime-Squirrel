@@ -19,6 +19,7 @@ contexts:
     - include: constants
     - include: enum-defs
     - include: function-defs
+    - include: lambda-def
     - include: function-calls
     - include: basics
     - include: parameter-vars
@@ -123,6 +124,12 @@ contexts:
         3: keyword.operator.squirrel
         4: storage.type.function keyword.declaration.function
       push: start-parameters
+
+  lambda-def:
+    - match: '@'
+      scope: storage.type.function keyword.declaration.function
+      push:
+        - include: start-parameters
 
   function-def-all:
     - match: _(?:cmp|mul|add|sub|div|mod|unm|newslot|delslot|set|get|typeof|tostring|nexti|cloned|inherited|newmember|call)
