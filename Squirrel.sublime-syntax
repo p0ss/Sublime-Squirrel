@@ -113,17 +113,9 @@ contexts:
     - match: \bconstructor\s*(?=\()
       scope: entity.name.function.constructor
       push: start-parameters
-    - match: '\b(function)(?=\s*\w+\s*\()'
+    - match: '\b(function)(?=.*\()'
       scope: storage.type.function keyword.declaration.function
-      push:
-      - match: _(?:cmp|mul|add|sub|div|mod|unm|newslot|delslot|set|get|typeof|tostring|nexti|cloned|inherited|newmember|call)
-        scope: support.function.squirrel
-      - match: '[^\d\W]\w*'
-        scope: entity.name.function.squirrel
-      - match: '::'
-        scope: punctuation.accessor.squirrel
-      - match: '(?=\()'
-        set: start-parameters
+      push: function-def-1
     - match: '(::|\.)?([^\d\W]\w*)\s+(<-|=)\s+(function|@)\s*(?=\()'
       captures:
         1: punctuation.accessor.squirrel
@@ -131,6 +123,30 @@ contexts:
         3: keyword.operator.squirrel
         4: storage.type.function keyword.declaration.function
       push: start-parameters
+
+  function-def-all:
+    - match: _(?:cmp|mul|add|sub|div|mod|unm|newslot|delslot|set|get|typeof|tostring|nexti|cloned|inherited|newmember|call)
+      scope: support.function.squirrel
+    - match: '[^\d\W]\w*(?=\()'
+      scope: entity.name.function.squirrel
+      set: start-parameters
+    - match: '(?=\()'
+      set: start-parameters
+
+  function-def-1:
+    - match: '::'
+      scope: punctuation.accessor.squirrel
+      set: function-def-2
+    - include: function-def-all
+    - match: '[^\d\W]\w*'
+      scope: variable.other.squirrel
+
+  function-def-2:
+    - match: '::'
+      scope: punctuation.accessor.squirrel
+    - include: function-def-all
+    - match: '[^\d\W]\w*'
+      scope: variable.other.member.squirrel
 
   function-calls:
     - meta_scope: meta.function.call
@@ -143,7 +159,7 @@ contexts:
 
   function-calls-member:
     - meta_scope: meta.function.call
-    - match: '(len|tostring|tofloat|tointeger|tochar|slice|find|tolower|toupper|rawget|rawset|rawin|rawdelete|clear|append|push|extend|pop|top|insert|remove|resize|sort|reverse|map|apply|capture|match|search)\s*(?=\()'
+    - match: '(len|to(?:string|float|integer|char|lower|upper)|slice|find|raw(?:delete|get|in|set)|clear|append|push|extend|pop|op|insert|remove|resize|sort|reverse|map|apply|capture|match|search|(?:set|get)(?:delegate|attributes|root)|filter|reduce|weakref|keys|values|top|(?:p|a|pa|)call|bindenv|getinfos|(?:raw)?newmember|getstatus|wakeup(?:throw)?|getstackinfos)\s*(?=\()'
       scope: support.function.squirrel
       set: start-parameters
     - match: '[^\d\W]\w*\s*(?=\()'
