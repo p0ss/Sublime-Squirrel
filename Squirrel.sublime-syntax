@@ -128,13 +128,12 @@ contexts:
   lambda-def:
     - match: '@'
       scope: storage.type.function keyword.declaration.function
-      push:
-        - include: start-parameters
+      push: start-parameters
 
   function-def-all:
     - match: _(?:cmp|mul|add|sub|div|mod|unm|newslot|delslot|set|get|typeof|tostring|nexti|cloned|inherited|newmember|call)
       scope: support.function.squirrel
-    - match: '[^\d\W]\w*(?=\()'
+    - match: '[^\d\W]\w*(?=\s*\()'
       scope: entity.name.function.squirrel
       set: start-parameters
     - match: '(?=\()'
