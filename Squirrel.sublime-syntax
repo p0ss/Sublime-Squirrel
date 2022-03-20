@@ -20,8 +20,8 @@ contexts:
     - include: enum-defs
     - include: function-defs
     - include: lambda-def
-    - include: function-calls
     - include: basics
+    - include: function-calls
     - include: parameter-vars
     - include: default-braces
     - include: punctuation
