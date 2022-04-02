@@ -11,5 +11,13 @@ This version has been significantly improved:
 
 ## Installation
 
+### Via Package Control (recommended)
+* [Install](https://packagecontrol.io/installation) Package Control
+* Open up your command pallete (Ctrl+Shift+P by default)
+* Select Package Control: Install Package (filter your list by typing install)
+* Select Squirrel (filter your list by typing squirrel)
+* Press enter and it should install automatically
+
+### Manual (not recommended)
 Download the source code as a ZIP, then extract the zip and rename the folder to Squirrel\
 Then copy that Squirrel folder to %appdata%/Sublime Text/Packages
