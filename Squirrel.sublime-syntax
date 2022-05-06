@@ -238,7 +238,7 @@ contexts:
           captures:
             0: punctuation.definition.string.end.squirrel
           pop: true
-    - match: '"'
+    - match: '@?"'
       captures:
         0: punctuation.definition.string.begin.squirrel
       push:
