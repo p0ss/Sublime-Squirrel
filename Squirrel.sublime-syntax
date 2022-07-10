@@ -114,7 +114,7 @@ contexts:
     - match: \bconstructor\s*(?=\()
       scope: entity.name.function.constructor
       push: start-parameters
-    - match: '\b(function)(?=.*\()'
+    - match: '\b(function)(?=(?:(?:\s*)|(?:\s.*))\()'
       scope: storage.type.function keyword.declaration.function
       push: function-def-1
     - match: '(::|\.)?([^\d\W]\w*)\s+(<-|=)\s+(function|@)\s*(?=\()'
